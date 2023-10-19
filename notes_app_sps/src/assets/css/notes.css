@@ -1,0 +1,59 @@
+.general__card{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.card{
+    border: solid 1px var(--light_grey);
+    width: 300px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.card__header{
+    border-bottom: 1px solid var(--light_grey);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: var(--light_grey2);
+}
+
+.card__body{
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.card__span{
+    margin: 10px 0;
+}
+.card__footer{
+    border-top: 1px solid var(--light_grey);
+    padding: 20px;
+    background-color: var(--light_grey2);
+}
+
+.card__button{
+    border-radius: 5px;
+    padding: 10px;
+    height: 40px;
+    color: var(--white);
+    border: none;
+}
+.card__button-edit{
+   width:60px;
+   background-color: var(--light_grey);
+}
+.card__button-delete{
+   
+   background-color: var(--red);
+}
+.card__button-edit:hover{
+   background-color: var(--dark_grey);
+}
+.card__button-delete:hover{
+   
+   background-color: var(--red__orange);
+}

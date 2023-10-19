@@ -1,17 +1,29 @@
 import Notes from '../models/Notas_model.js'
 
-export const getNote = async (req, res)=>{
+export const getNote = async (req, res) => {
     try {
         const notes = await Notes.find();
-        return res.json(notes);
-        
+        const today = new Date(); // Fecha actual
+        const notesWithTimeElapsed = notes.map((note) => {
+            const createdDate = new Date(note.date);
+            const timeElapsed = today - createdDate;
+            const minutes = Math.floor(timeElapsed / (1000 * 60));
+            if (minutes < 60) {
+                return { ...note._doc, timeElapsed: `${minutes} minutos` };
+            } else if (minutes < 1440) {
+                const hours = Math.floor(minutes / 60);
+                return { ...note._doc, timeElapsed: `${hours} horas` };
+            } else {
+                const days = Math.floor(minutes / 1440);
+                return { ...note._doc, timeElapsed: `${days} días` };
+            }
+        });
+        return res.json(notesWithTimeElapsed);
     } catch (error) {
         console.log(error);
-        res.status(500).json("Error get notes")
-        
+        res.status(500).json("Error al obtener las notas");
     }
 }
-
 
 export const createNote = async (req, res)=>{
     
