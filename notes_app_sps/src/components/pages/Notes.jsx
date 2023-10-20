@@ -1,36 +1,57 @@
-import React, { useEffect } from "react";
+// Notes.js
+import React, { useEffect  , useState} from "react";
 import { useNotes } from "../../context/noteContext";
+import { Link } from "react-router-dom";
 import "../../assets/css/notes.css";
 
 export const Notes = () => {
-    const { getNotes, notes, deleteNotes } = useNotes();
+  const { getNotes, notes, deleteNotes } = useNotes();
+  const [isEditing, setIsEditing] = useState(false);
+  const [noteToEdit, setNoteToEdit] = useState(null);
 
-    useEffect(() => {
-        getNotes();
-    }, []);
+  useEffect(() => {
+    getNotes();
+  }, []);
 
-    const handleDeleteNote = (noteId) => {
-        deleteNotes(noteId); // Pass the _id of the note to delete
-    };
+  const handleEditNote = (note) => {
+    setIsEditing(true);
+    setNoteToEdit(note);
+  };
 
-    return (
-        <div className="general__card">
-            {notes.map((note) => (
-                <div className="card" key={note._id}>
-                    <div className="card__header">
-                        <h2 className="card__h2">{note.title}</h2>
-                        <button className="card__button card__button-edit">Edit</button>
-                    </div>
-                    <div className="card__body">
-                        <span className="card__span">{note.info}</span>
-                        <span className="card__span">{note.name}</span>
-                        <span className="card__span">{note.timeElapsed}</span>
-                    </div>
-                    <div className="card__footer">
-                        <button className="card__button card__button-delete" onClick={() => handleDeleteNote(note._id)}>Eliminar</button>
-                    </div>
-                </div>
-            ))}
+  const handleDeleteNote = (noteId) => {
+    deleteNotes(noteId);
+  };
+
+  return (
+    <div className="general__card">
+      {notes.map((note) => (
+        <div className="card" key={note._id}>
+          <div className="card__header">
+            <h2 className="card__h2">{note.title}</h2>
+            <Link
+              to="/createNote"
+              state={{ noteToEdit: note }}
+            >
+              <button className="card__button card__button-edit">
+                Edit
+              </button>
+            </Link>
+          </div>
+          <div className="card__body">
+            <span className="card__span">{note.info}</span>
+            <span className="card__span">{note.name}</span>
+            <span className="card__span">{note.timeElapsed}</span>
+          </div>
+          <div className="card__footer">
+            <button
+              className="card__button card__button-delete"
+              onClick={() => handleDeleteNote(note._id)}
+            >
+              Delete
+            </button>
+          </div>
         </div>
-    );
+      ))}
+    </div>
+  );
 };
