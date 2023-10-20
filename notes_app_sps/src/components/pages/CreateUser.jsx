@@ -1,5 +1,7 @@
 export const CreateUser = () => {
   return (
-    <div>CreateUser</div>
+    <div className="general__User">
+      
+    </div>
   )
 }

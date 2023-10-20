@@ -1,0 +1,44 @@
+.general__crear {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.crear {
+    width: 500px;
+    background-color: var(--white);
+    border-radius: 3px;
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.crear__input,
+.crear__input--textarea {
+    margin-top: 10px;
+    font-family: 'roboto';
+    border: solid 1px grey;
+    border-radius: 4px;
+}
+
+.crear__input {
+    height: 30px;
+}
+
+.crear__button {
+    background-color: var(--blue);
+    width: 70px;
+    margin: 10px 0;
+    padding: 8px;
+    border: none;
+    color: var(--white);
+    border-radius: 3px;
+}
+
+.crear__input-date {
+    width: 150px;
+}

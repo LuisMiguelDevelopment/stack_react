@@ -8,6 +8,7 @@ html,body{
     padding: 0;
     box-sizing: border-box;
     font-family: 'roboto';
+    background-color: rgb(142, 198, 248);
 }
 
 *{
